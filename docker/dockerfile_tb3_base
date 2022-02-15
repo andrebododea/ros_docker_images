@@ -1,0 +1,33 @@
+# Base Image for TurtleBot3 Simulation
+
+# Specify the parent package 
+FROM nvidia_ros:latest
+SHELL ["/bin/bash", "-c"]
+
+# Create Catkin workspace with TurtleBot3 package and behavior tree source
+RUN mkdir -p /turtlebot3_ws/src \
+ && cd /turtlebot3_ws/src \
+ && source /opt/ros/noetic/setup.bash \
+ && catkin_init_workspace \
+ && git clone -b noetic-devel https://github.com/ROBOTIS-GIT/turtlebot3.git \
+ && git clone -b noetic-devel https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git \
+ && git clone -b noetic-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git \
+ && git clone -b master https://github.com/BehaviorTree/BehaviorTree.CPP.git behavior_tree_cpp 
+
+# Build the base Catkin workspace
+RUN pip3 install osrf-pycommon
+RUN cd /turtlebot3_ws \
+ && source /opt/ros/noetic/setup.bash \
+ && rosdep install -y --from-paths src --ignore-src \
+ && catkin build -j4
+
+# Remove display warnings
+RUN mkdir /tmp/runtime-root
+ENV XDG_RUNTIME_DIR "/tmp/runtime-root"
+ENV NO_AT_BRIDGE 1
+
+# Set up the work directory and entrypoint
+WORKDIR /turtlebot3_ws
+RUN chmod +x ./docker/entrypoint.sh /
+COPY ./docker/entrypoint.sh /
+ENTRYPOINT [ "/entrypoint.sh" ]
