@@ -7,7 +7,7 @@ At my job, my local Linux environment has a ton of libraries installed on it to 
 My inspiration for this particular method of implementing the containers is [this blog post](https://roboticseabass.com/2021/04/21/docker-and-ros/) by [Sebastian Castro](https://roboticseabass.com/about/). Also gained some inspiration from Allison Thackerton's ROS World 2021 talk ["VSCode, Docker and ROS2"](https://vimeo.com/649658020/9ef0b5ec32) which focuses more on integrating a ROS2 Docker environment with the VS Code IDE. 
 
 # Architecture Overview
-In this setup there will be three images, each layer on the previous one. 
+In this setup there will be three images, each layering onto the previous one. 
 
 <img src="https://user-images.githubusercontent.com/9446419/153943467-6ba79a96-e157-4425-bcdf-5b34aabd6225.png" width="500">
 
@@ -15,4 +15,10 @@ The big win with this way of modularly putting together a stack of images is tha
 
 Another piece of functionality that this may unlock is the ability to more easily run ROS projects directly on a server, and serve users a simulation via a webpage. This might be a really cool way to demo projects by allowing users to directly interact with demos via Gazebo or Rviz. 
 
-# Implementation Overview
+# Implementation Plan
+
+- Implement the base Ubuntu image
+- Implement the ROS1 Noetic image
+- Implement the Turtlebot3 image
+- Successfully run a Turtlebot3 sim demo using the images
+- Bonus: Integrate with VS Code?
