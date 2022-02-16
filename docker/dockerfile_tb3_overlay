@@ -7,7 +7,6 @@ RUN source /opt/ros/noetic/setup.bash \
  && cd /overlay_ws \ 
  && catkin_init_workspace
 COPY ./tb3_autonomy/ /overlay_ws/src/tb3_autonomy/
-COPY ./tb3_worlds/ /overlay_ws/src/tb3_worlds/
 RUN source /opt/ros/noetic/setup.bash \
  && cd /overlay_ws \
  && catkin config --extend /turtlebot3_ws/devel \
@@ -15,6 +14,6 @@ RUN source /opt/ros/noetic/setup.bash \
 
 # Set up the work directory and entrypoint
 WORKDIR /overlay_ws
-RUN chmod +x ./docker/entrypoint.sh /
 COPY ./docker/entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]

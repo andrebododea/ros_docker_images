@@ -28,6 +28,6 @@ ENV NO_AT_BRIDGE 1
 
 # Set up the work directory and entrypoint
 WORKDIR /turtlebot3_ws
-RUN chmod +x ./docker/entrypoint.sh /
 COPY ./docker/entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]

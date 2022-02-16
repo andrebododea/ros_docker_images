@@ -16,8 +16,8 @@ fi
 echo "Sourced Catkin workspace!"
 
 # Set environment variables
-export TURTLEBOT3_MODEL=waffle_pi
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$(rospack find tb3_worlds)/models
+export TURTLEBOT3_MODEL=waffle
+export SVGA_VGPU10=0 # Keep Gazebo from exploding
 
 # Execute the command passed into this entrypoint
 exec "$@"
