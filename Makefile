@@ -3,10 +3,6 @@
 
 # Another useful link: https://github.com/koenlek/docker_ros_nvidia
 
-# Command line arguments
-USE_GPU ?= false         	# Enable the use of GPU devices (set to true if you have an NVIDIA GPU)
-# NO_CACHE_BASE ?= false	# Enable a clean build of the Docker base image
-# NO_CACHE_OVERLAY ?= false	# Enable a clean build of the Docker overlay image
 
 # Docker variables
 IMAGE_NAME = turtlebot3
@@ -29,9 +25,7 @@ DOCKER_ENV_VARS = \
 		--device="/dev/dri:/dev/dri"
 
 # Depending on args to makefile, set GPU enabled or disabled
-ifeq ("${USE_GPU}", "true")
 DOCKER_GPU_ARGS = --gpus="all" --env="NVIDIA_VISIBLE_DEVICES=all" --env="NVIDIA_DRIVER_CAPABILITIES=all" --env="DISPLAY" --env="QT_X11_NO_MITSHM=1"
-endif
 
 # Finally, set a variable to contain the full docker arguments 
 DOCKER_ARGS = ${DOCKER_VOLUMES} ${DOCKER_ENV_VARS} ${DOCKER_GPU_ARGS}

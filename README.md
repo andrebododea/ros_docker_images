@@ -1,5 +1,12 @@
 # ROS Docker Images
-My collection of images and related build tools for building and running ROS projects (and graphical tools such as RViz and Gazebo) directly from Docker containers.
+My collection of images and related build tools for building and running ROS projects (and graphical tools such as RViz and Gazebo) directly from Docker containerzs.
+
+# Quick Start Commands
+- To build the docker image, do `make build`. Should only need to do this once - during setup.
+- To drop into a shell inside the docker image, do `make term`.
+- To start the turtlebot3 demo in the house environment, do `make tb3house`. To start the teleop component, in a new terminal do `make tb3teleop`.
+
+For a complete list of available docker commands via `make`, see the Makefile in the top level of the project.
 
 # Motivation
 I find that when I try to spin up on a side project, I get tons of library conflicts due to version mismatches and other such issues with libraries that I use for my professional projects. To resolve that issue and speed up my spin-up time when working personal ROS projects, I've decided to dockerize the environment that I typically use for those purposes. This will initially the Turtlebot3 dependencies, but should be flexible enough to be easily extended to new projects in the future. 
