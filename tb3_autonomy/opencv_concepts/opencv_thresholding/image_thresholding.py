@@ -43,7 +43,7 @@ def adaptive_thresholding(gray_image, threshold_value):
                                                      cv2.ADAPTIVE_THRESH_MEAN_C, # adaptive method
                                                      cv2.THRESH_BINARY_INV,      # thresholding type
                                                      threshold_value,
-                                                     C)
+                                                     C  )
 
     cv2.imshow("Adapt. Mean C", adaptive_threshold_image)
 
